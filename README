@@ -1,0 +1,30 @@
+Installation:
+Install cucumber
+  npm install cucumber
+
+Install Selenium WebDriver
+  npm install selenium-webdriver
+
+To Run the code
+  cd jungle-socks-tests
+  cucumber-js features/junglesocks.feature
+
+
+
+Explanation for files:
+
+features/support/world.js – It provides the context for running the test script. It includes necessary libraries
+and key objects such as the web driver object.
+
+features/support/hooks.js – It is used setup and cleanup code. In our case, we simply close the webdriver
+object after all the features are run.
+
+features/junglesocks.feature – contains the test script written in Gherkin. This is very close to English.
+‘Background’ sets the context for the test scenario.
+We can vary the user input using tags. See the params in <> and their values in a table format
+delimited by |.
+Given, When, Then are steps written in English with possible tags.
+Examples are used to vary the test values for a given scenario.
+
+features/step_definitions/junglesocks_stepdef.js – This translates the plain text Gherkin steps in English into
+actions. Each of the Given, When and Then in the feature file have corresponding step definition functions.
