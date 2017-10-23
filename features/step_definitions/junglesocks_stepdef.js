@@ -72,13 +72,13 @@ defineSupportCode(function(context) {
     var expectedTaxes = this.calcTaxes(state, expectedSubTotal);
     var expectedTotal = expectedSubTotal + expectedTaxes;
 
-    this.driver.findElement(By.id('subtotal')).getText().then(actualSubTotal => { => {
+    this.driver.findElement(By.id('subtotal')).getText().then(actualSubTotal => {
         assert.equal(actualSubTotal, expectedSubTotal);
       });
-    this.driver.findElement(By.id('taxes')).getText().then(actualTaxes => { => {
+    this.driver.findElement(By.id('taxes')).getText().then(actualTaxes => {
         assert.equal(actualTaxes, expectedTaxes);
       });
-    this.driver.findElement(By.id('total')).getText().then(actualTotal => { => {
+    this.driver.findElement(By.id('total')).getText().then(actualTotal => {
         assert.equal(actualTotal, expectedTotal);
       });
   });

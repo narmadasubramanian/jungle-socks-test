@@ -1,6 +1,7 @@
 require('chromedriver');
 var seleniumWebdriver = require('selenium-webdriver');
 var defineSupportCode = require('cucumber');
+var asserts = require('asserts');
 
 function CustomWorld() {
   this.driver = new seleniumWebdriver.Builder().forBrowser('chrome').build();
@@ -15,15 +16,20 @@ function CustomWorld() {
   };
 
   this.validateItem = function(animal, expectedProductName, expectedPrice, expectedQuantity) {
-    if(this.isNumber(quantity) && quantity > 0) {
+    if (this.isNumber(quantity) && quantity > 0) {
       this.driver.findElement(By.xpath("//*[@class='"+animal+"']/td[1]")).getText().then(actualProductName => {
-          assert.equal(actualProductName, expectedProductName);
+        assert.equal(actualProductName, expectedProductName);
+      });
       this.driver.findElement(By.xpath("//*[@class='"+animal+"']/td[2]")).getText().then(actualPrice => {
-          assert.equal(actualPrice, expectedPrice);
+        assert.equal(actualPrice, expectedPrice);
+      });    
       this.driver.findElement(By.xpath("//*[@class='"+animal+"']/td[3]")).getText().then(actualQuantity => {
-          assert.equal(actualPrice, expectedQuantity);
+        assert.equal(actualPrice, expectedQuantity);
+      });    
     } else {
-      assert.equal(his.driver.findElement(By.xpath("//*[@class='"+animal+"']/td[1]")).isDisplayed, false);
+      this.driver.findElements(By.xpath("//*[@class='"+animal+"']")).then(elems => {
+        assert.equal(elems.length, 0);
+      });
     }
   };
 
